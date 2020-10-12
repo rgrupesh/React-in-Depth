@@ -1,17 +1,37 @@
-import React from 'react';
-import './App.css';
-import Person from './Person/Person'
+import React, { Component } from "react";
+import "./App.css";
+import Person from "./Person/Person";
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Hello World!</h1>
-      <Person name="Rupesh" age='21' />
-      <Person name="Ram" age='25'/>
-      <Person name="Shyam" age='30'>Loves Football</Person>
-    </div>
-    // React.createElement('div',{className: "App"}, React.createElement('h1',{},'Hello World!!'))
-  );
+class App extends Component {
+  state = {
+    persons: [
+      { name: "Rupesh", age: 21 },
+      { name: "Ram", age: 25 },
+      { name: "Shyam", age: 30 },
+    ],
+  };
+  render() {
+    return (
+      <div className="App">
+        <h1>Hello World!</h1>
+        <button>Click</button>
+        <Person
+          name={this.state.persons[0].name}
+          age={this.state.persons[0].age}
+        />
+        <Person
+          name={this.state.persons[1].name}
+          age={this.state.persons[1].age}
+        />
+        <Person
+          name={this.state.persons[2].name}
+          age={this.state.persons[2].age}
+        >
+          Loves Football
+        </Person>
+      </div>
+    );
+  }
 }
 
 export default App;
