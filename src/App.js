@@ -1,6 +1,19 @@
 import React, { Component } from "react";
 import "./App.css";
 import Person from "./Person/Person";
+import styled from "styled-components";
+
+const StyledButton = styled.button`
+    background-color: ${(props) => (props.alt ? "red" : "green")};
+    color: white;
+    padding: 8px;
+    cursor: pointer;
+    border: 1px solid brown;
+
+    &:hover {
+      background-color: ${(props) => (props.alt ? "yellow" : "grey")};
+      color: blue;  
+`;
 
 class App extends Component {
   state = {
@@ -53,18 +66,6 @@ class App extends Component {
   };
 
   render() {
-    const style = {
-      backgroundColor: "green",
-      color: "white",
-      padding: "8px",
-      cursor: "pointer",
-      border: "1px solid brown",
-      ":hover": {
-        backgroundColor: "yellow",
-        color: "blue",
-      },
-    };
-
     let persons = null;
 
     if (this.state.showPersons) {
@@ -83,11 +84,6 @@ class App extends Component {
           ))}
         </div>
       );
-      style.backgroundColor = "red";
-      style[":hover"] = {
-        backgroundColor: "salmon",
-        color: "blue",
-      };
     }
 
     const classes = [];
@@ -104,9 +100,12 @@ class App extends Component {
         <p className={classes.join(" ")}>
           Yo 148, 3-to-the-3-to-the-6-to-the-9
         </p>
-        <button style={style} onClick={this.toogleNameHandler}>
+        <StyledButton
+          alt={this.state.showPersons}
+          onClick={this.toogleNameHandler}
+        >
           Toogle Person
-        </button>
+        </StyledButton>
         {persons}
       </div>
     );
