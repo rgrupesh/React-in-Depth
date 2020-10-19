@@ -1,19 +1,6 @@
 import React, { Component } from "react";
-import "./App.css";
+import classes from "./App.module.css";
 import Person from "./Person/Person";
-import styled from "styled-components";
-
-const StyledButton = styled.button`
-    background-color: ${(props) => (props.alt ? "red" : "green")};
-    color: white;
-    padding: 8px;
-    cursor: pointer;
-    border: 1px solid brown;
-
-    &:hover {
-      background-color: ${(props) => (props.alt ? "yellow" : "grey")};
-      color: blue;  
-`;
 
 class App extends Component {
   state = {
@@ -67,6 +54,7 @@ class App extends Component {
 
   render() {
     let persons = null;
+    let btnClasses = "";
 
     if (this.state.showPersons) {
       persons = (
@@ -84,28 +72,26 @@ class App extends Component {
           ))}
         </div>
       );
+      btnClasses = classes.Red;
     }
 
-    const classes = [];
+    const classesAssig = [];
     if (this.state.persons.length <= 2) {
-      classes.push("red");
+      classesAssig.push(classes.red);
     }
     if (this.state.persons.length <= 1) {
-      classes.push("bold");
+      classesAssig.push(classes.bold);
     }
 
     return (
-      <div className="App">
+      <div className={classes.App}>
         <h1>Hello World!</h1>
-        <p className={classes.join(" ")}>
+        <p className={classesAssig.join(" ")}>
           Yo 148, 3-to-the-3-to-the-6-to-the-9
         </p>
-        <StyledButton
-          alt={this.state.showPersons}
-          onClick={this.toogleNameHandler}
-        >
+        <button className={btnClasses} onClick={this.toogleNameHandler}>
           Toogle Person
-        </StyledButton>
+        </button>
         {persons}
       </div>
     );
