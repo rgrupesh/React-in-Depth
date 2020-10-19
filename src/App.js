@@ -81,9 +81,21 @@ class App extends Component {
       );
       style.backgroundColor = "red";
     }
+
+    const classes = [];
+    if (this.state.persons.length <= 2) {
+      classes.push("red");
+    }
+    if (this.state.persons.length <= 1) {
+      classes.push("bold");
+    }
+
     return (
       <div className="App">
         <h1>Hello World!</h1>
+        <p className={classes.join(" ")}>
+          Yo 148, 3-to-the-3-to-the-6-to-the-9
+        </p>
         <button style={style} onClick={this.toogleNameHandler}>
           Toogle Person
         </button>
