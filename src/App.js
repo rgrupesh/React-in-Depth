@@ -5,9 +5,9 @@ import Person from "./Person/Person";
 class App extends Component {
   state = {
     persons: [
-      { name: "Rupesh", age: 21 },
-      { name: "Ram", age: 25 },
-      { name: "Shyam", age: 30 },
+      { id: "a", name: "Rupesh", age: 21 },
+      { id: "b", name: "Ram", age: 25 },
+      { id: "c", name: "Shyam", age: 30 },
     ],
     showPersons: false,
   };
@@ -22,13 +22,22 @@ class App extends Component {
     });
   };
 
-  nameChangeHandler = (event) => {
+  nameChangeHandler = (event, id) => {
+    const personIndex = this.state.persons.findIndex((p) => {
+      return p.id === id;
+    });
+
+    const person = {
+      ...this.state.persons[personIndex],
+    };
+
+    person.name = event.target.value;
+
+    const persons = [...this.state.persons];
+    persons[personIndex] = person;
+
     this.setState({
-      persons: [
-        { name: "Rupesh", age: 21 },
-        { name: "Ram", age: 25 },
-        { name: event.target.value, age: 30 },
-      ],
+      persons: persons,
     });
   };
 
@@ -63,6 +72,8 @@ class App extends Component {
               }}
               name={person.name}
               age={person.age}
+              key={person.id}
+              changed={(event) => this.nameChangeHandler(event, person.id)}
             />
           ))}
         </div>
