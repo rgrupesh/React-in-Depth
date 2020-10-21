@@ -13,16 +13,6 @@ class App extends Component {
     showPersons: false,
   };
 
-  switchNameHandler = (newName) => {
-    this.setState({
-      persons: [
-        { name: newName, age: 21 },
-        { name: "Ram", age: 25 },
-        { name: "Shyam K.C", age: 30 },
-      ],
-    });
-  };
-
   nameChangeHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex((p) => {
       return p.id === id;
@@ -71,6 +61,7 @@ class App extends Component {
     return (
       <div className={classes.App}>
         <Cockpit
+          title={this.props.appTitle}
           persons={this.state.persons}
           showPersons={this.state.showPersons}
           toggle={this.toogleNameHandler}

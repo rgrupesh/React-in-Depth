@@ -19,6 +19,7 @@ const cockpit = (props) => {
   return (
     <div className={classes.Cockpit}>
       <h1>Hello World!</h1>
+      <h2>{props.title}</h2>
       <p className={classesAssig.join(" ")}>
         Yo 148, 3-to-the-3-to-the-6-to-the-9
       </p>
