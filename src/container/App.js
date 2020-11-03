@@ -67,6 +67,9 @@ class App extends Component {
           toggle={this.toogleNameHandler}
         />
         {persons}
+        <button className={classes.Menu}>
+        Menu
+      </button>
       </div>
     );
   }
